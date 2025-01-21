@@ -5,4 +5,8 @@ export class PracticeService {
   practice(): string {
     return 'success!';
   }
+
+  practiceDetail(id: number): string {
+    return `${id} id success!`;
+  }
 }
