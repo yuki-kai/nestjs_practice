@@ -4,8 +4,17 @@ import { HttpExceptionFilter } from './common/filters/http-exception/http-except
 import { PracticeInterceptor } from './common/interceptors/practice/practice.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.enableCors(); // TODO: 詳細に設定したい
+  const app = await NestFactory.create(AppModule, {
+    // cors: {},
+    cors: {
+      "origin": ["http://localhost:3000"],
+      "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+      "preflightContinue": false,
+      "optionsSuccessStatus": 204,
+      // "allowedHeaders": ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'], // これを追加するとエラーになる
+    }
+  });
+
   app
     .useGlobalFilters(new HttpExceptionFilter())
     .useGlobalInterceptors(new PracticeInterceptor());

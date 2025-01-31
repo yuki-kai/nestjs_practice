@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { PracticeModule } from './practice/practice.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { PracticeController } from './practice/practice.controller';
+import { CorsMiddleware } from './common/middleware/cors/cors.middleware';
 
 @Module({
   imports: [PracticeModule],
@@ -12,6 +13,9 @@ import { PracticeController } from './practice/practice.controller';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes(PracticeController);
+    consumer.apply(
+      LoggerMiddleware,
+      // CorsMiddleware
+    ).forRoutes(PracticeController);
   }
 }
