@@ -18,4 +18,10 @@ export class PracticeController {
   practiceDetail(@Param('id', CustomParseIntPipe) id: number): string {
     return this.practiceService.practiceDetail(id);
   }
+
+  @Get('time/get')
+  getTime(): string {
+    console.log('--- time ---');
+    return this.practiceService.getTime();
+  }
 }

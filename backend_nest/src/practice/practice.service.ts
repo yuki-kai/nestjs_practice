@@ -9,4 +9,8 @@ export class PracticeService {
   practiceDetail(id: number): string {
     return `${id} id success!`;
   }
+
+  getTime(): string {
+    return (new Date()).toLocaleTimeString();
+  }
 }
